@@ -6,6 +6,7 @@ class mod():
     def mod_extract(self):
         import zipfile
         import os
-        os.makedirs(self.modDir)
+        if (not os.path.exists(self.modDir)):
+            os.makedirs(self.modDir)
         unzip = zipfile.ZipFile(self.baseDir, 'r')
         unzip.extractall(self.modDir)
