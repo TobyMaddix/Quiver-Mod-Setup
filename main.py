@@ -1,7 +1,13 @@
 import setup
 
-helpScreens = {"syntax":"""Here is an example of what too type:
-testcommand \"teststring\""""}
+helpScreens = {"syntax":"""Command example:
+testcommand \"teststring\"""",
+"commands":"""Command list:
+mod create <path to create mod>
+help <subject>""","help":
+"""List of topics:
+syntax
+commands"""}
 
 #turns the input into a readable list
 def console_input_parse(input):
@@ -27,25 +33,37 @@ def console_input_parse(input):
 
 #compares the command parameters from the user agains the command tree
 def console_input_execute(paramList):
-    if (paramList[0] == "mod"):
-        if (paramList[1] == "setup"):
-            setupmod = setup.mod(paramList[2],"resource\createmod.zip")
-            setupmod.mod_extract()
-            del setupmod
+    if (len(paramList) > 0):
+        if (paramList[0] == "mod"):
+            if (paramList[1] == "setup"):
+                setupmod = setup.mod(paramList[2],"resource\createmod.zip")
+                setupmod.mod_extract()
+                del setupmod
+                return True
+        elif (paramList[0] == "help"):
+            print("================================================================")
+            print(shared_ui_help(paramList[1],helpScreens))
+            print("================================================================")
             return True
-    elif (paramList[0] == "help"):
-        print("================================================================")
-        print(shared_ui_help(paramList[1],helpScreens))
-        print("================================================================")
-        return True
+        else:
+            return False  
     else:
-        return False       
+        return False     
 #gets the help screen from a dictionary of help
 def shared_ui_help(screentype,screens):
     for x in screens:
         if (x == screentype):
             return screens.get(x)
 
+#print commands
+print("HELP:")
+print("================================================================")
+print(shared_ui_help("syntax",helpScreens))
+print("================================================================")
+print(shared_ui_help("commands",helpScreens))
+print("================================================================")
+print(shared_ui_help("help",helpScreens))
+print("================================================================")
 #main program loop
 while True:
     userInput = input("USER: ")
