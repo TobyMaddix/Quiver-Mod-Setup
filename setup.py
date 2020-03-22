@@ -5,6 +5,7 @@ class mod():
     #extracts the mod files to the required location
     def mod_extract(self):
         import zipfile
-        unzip = zipfile.ZipFile(self.baseDir,"r")
+        import os
+        os.makedirs(self.modDir)
+        unzip = zipfile.ZipFile(self.baseDir, 'r')
         unzip.extractall(self.modDir)
-        del unzip
