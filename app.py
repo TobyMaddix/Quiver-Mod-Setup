@@ -1,5 +1,7 @@
 import setup
 from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
 
 class app_gui():
     def __init__(self):
@@ -13,12 +15,16 @@ class app_gui():
     def create_layout_base(self):
         self.main_layout = QGridLayout()
 
+        self.logo = QLabel()
+        self.logo.setPixmap(QPixmap("resource/gui/logo.png"))
+        self.main_layout.addWidget(self.logo,0,0)
+
         self.browsePath = QLineEdit()
         self.browsePath.setPlaceholderText("Path to create mod")
-        self.main_layout.addWidget(self.browsePath,0,0)
+        self.main_layout.addWidget(self.browsePath,0,1)
 
         self.browseButton = QPushButton("Browse")
-        self.main_layout.addWidget(self.browseButton,0,1)
+        self.main_layout.addWidget(self.browseButton,0,2)
         self.browseButton.clicked.connect(self.function_getdir)
     def create_layout_created(self):
         self.createLoad = QProgressBar()
@@ -28,8 +34,12 @@ class app_gui():
         self.main_window = QWidget()
         self.main_window.setLayout(self.main_layout)
 
-        self.main_window.setGeometry(500, 500, 300, 10)
+        self.main_window.setGeometry(500, 500, 300, 60)
+        self.main_window.setMinimumSize(300,60)
         self.main_window.setWindowTitle("Quiver Mod Setup")
+        #self.main_window.setWindowFlags(Qt.FramelessWindowHint)
+        
+        self.main_window.setStyleSheet(open("resource/gui/style.css").read())
 
         self.main_window.show()
     
