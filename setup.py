@@ -6,5 +6,5 @@ class mod():
     def mod_extract(self):
         import zipfile
         unzip = zipfile.ZipFile(self.baseDir,"r")
-        unzip.extractall(modDir)
+        unzip.extractall(self.modDir)
         del unzip
