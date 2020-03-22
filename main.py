@@ -3,11 +3,11 @@ import setup
 helpScreens = {"syntax":"""Here is an example of what too type:
 testcommand \"teststring\""""}
 
+#turns the input into a readable list
 def console_input_parse(input):
     paramList = []
     quoteActive = False
     temp01 = ""
-    #turns the input into a readable list
     for x in input:
         if (x == " " and quoteActive == False):#checks for spaces and if we are in a quote
             paramList.append(temp01)
@@ -25,6 +25,7 @@ def console_input_parse(input):
         paramList.append(temp01)#does a final copy to makes sure we got everything
     return paramList
 
+#compares the command parameters from the user agains the command tree
 def console_input_execute(paramList):
     if (paramList[0] == "mod"):
         if (paramList[1] == "setup"):
@@ -39,21 +40,18 @@ def console_input_execute(paramList):
         return True
     else:
         return False       
-
+#gets the help screen from a dictionary of help
 def shared_ui_help(screentype,screens):
     for x in screens:
         if (x == screentype):
             return screens.get(x)
 
+#main program loop
 while True:
     userInput = input("USER: ")
     userParams = console_input_parse(userInput)
     if (console_input_execute(userParams)):
-        print("command successful")
+        #print("command successful")
+        pass
     else:
-        print("command failed")
-
-print("================================================================")
-print(shared_ui_help("syntax",{"syntax":"""Here is an example of what too type:
-testcommand \"teststring\""""}))
-print("================================================================")
+        print("Invalid command")
