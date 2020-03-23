@@ -8,6 +8,6 @@
 <b>Files Of Note:</b>
 <ul>
   <li>resource/createmod.zip - Base files to unzip and copy</li>
-  <li>resource/ui/style.css - Themes (Dark mode, ect)</li>
-  <li>resource/ui/logo.png - Logo for application</li>
+  <li>resource/gui/style.css - Themes (Dark mode, ect)</li>
+  <li>resource/gui/logo.png - Logo for application</li>
 </ul>
