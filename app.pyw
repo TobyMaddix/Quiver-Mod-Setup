@@ -17,18 +17,14 @@ class app_modsetup():
     def create_layout_base(self):
         self.main_layout = QGridLayout()
 
-        self.logo = QLabel()
-        self.logo.setPixmap(QPixmap("resource/gui/logo.png"))
-        self.main_layout.addWidget(self.logo,0,0)
-
         self.browsePath = QLineEdit()
         self.browsePath.setPlaceholderText("Path to create mod")
         self.browsePath.textChanged.connect(self.function_browse_edit)
-        self.main_layout.addWidget(self.browsePath,0,1)
+        self.main_layout.addWidget(self.browsePath,0,0)
 
         self.browseButton = QPushButton("Browse")
         self.browseButton.clicked.connect(self.function_getdir)
-        self.main_layout.addWidget(self.browseButton,0,2)
+        self.main_layout.addWidget(self.browseButton,0,1)
     def create_window(self):
         #define the window
         self.main_window = QWidget()
@@ -55,7 +51,7 @@ class app_modsetup():
         #add create mod button
         self.createmodButton = QPushButton("Create Mod")
         self.createmodButton.clicked.connect(self.function_createmod)
-        self.main_layout.addWidget(self.createmodButton,1,0,1,3)
+        self.main_layout.addWidget(self.createmodButton,1,0,1,2)
         #set size of window for new button
         self.main_window.setMinimumSize(400,100)
         self.main_window.setMaximumSize(400,100)
