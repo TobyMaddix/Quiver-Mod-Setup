@@ -36,7 +36,7 @@ def console_input_execute(paramList):
     if (len(paramList) > 0):
         if (paramList[0] == "mod"):
             if (paramList[1] == "setup"):
-                setupmod = setup.mod(paramList[2],"resource\createmod.zip")
+                setupmod = setup.mod(paramList[2],"E:\Quiver\Quiver-Mod-Setup\resource\createmod.zip")
                 setupmod.mod_extract()
                 del setupmod
                 return True

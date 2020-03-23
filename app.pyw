@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
-class app_gui():
+class app_modsetup():
     def __init__(self):
         self.editFirst = False
         app = QApplication([]) #init app
@@ -44,6 +44,7 @@ class app_gui():
     def function_getdir(self):
         browseSelection = str(QFileDialog.getExistingDirectory())
         self.browsePath.setText(browseSelection)
+        print(browseSelection)
     
     def function_browse_edit(self):
         if (self.editFirst == False):
@@ -61,13 +62,22 @@ class app_gui():
 
     def function_createmod(self):
         self.gui_createmod()
-        setupmod = setup.mod(self.browsePath.text(),"resource\createmod.zip")
+        setupmod = setup.mod("E:/Quiver/Quiver-Mod-Setup/resource/createmod.zip",self.browsePath.text())
         setupmod.mod_extract()
         del setupmod
+        #self.mod_extract(self.browsePath.text(),"E:/Quiver/Quiver-Mod-Setup/resource/createmod.zip")
     def gui_createmod(self):
         self.browsePath.setDisabled(True)
         self.browseButton.setDisabled(True)
         self.createmodButton.setDisabled(True)
+    def mod_extract(self,baseDir,modDir):
+        import zipfile
+        import os
+        if (not os.path.exists(modDir)):
+            os.makedirs(modDir)
+        unzip = zipfile.ZipFile("E:/Quiver/Quiver-Mod-Setup/resource/createmod.zip", "r")
+        unzip.printdir()
+        unzip.extractall("E:/Quiver/Quiver-Mod-Setup/testmod")
+        del unzip
 
-
-app=app_gui()
+app=app_modsetup()
