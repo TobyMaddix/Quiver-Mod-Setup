@@ -10,9 +10,9 @@ class mod():
         import os
         if (not os.path.exists(self.modDir)):
             os.makedirs(self.modDir)
-        unzip = zipfile.ZipFile(str(self.baseDir), "r")
+        unzip = zipfile.ZipFile(self.baseDir, "r")
         unzip.printdir()
-        unzip.extractall(str(self.modDir))
+        unzip.extractall(self.modDir)
         del unzip
     def mod_link(self):
         import os

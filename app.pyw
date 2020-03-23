@@ -8,6 +8,7 @@ class app_modsetup():
         self.editFirst = False
         app = QApplication([]) #init app
         app.setStyle("fusion")
+        app.setWindowIcon(QIcon("resource/gui/logo.png"))
 
         self.create_layout_base()
         self.create_window()
@@ -65,11 +66,23 @@ class app_modsetup():
         setupmod = setup.mod("E:/Quiver/Quiver-Mod-Setup/resource/createmod.zip",self.browsePath.text())
         setupmod.mod_extract()
         del setupmod
+
+        createmodFinishedMsg = QMessageBox()
+        createmodFinishedMsg.setIcon(QMessageBox.Information)
+        createmodFinishedMsg.setText("This is a message box")
+        createmodFinishedMsg.setInformativeText("This is additional information")
+        createmodFinishedMsg.setWindowTitle("MessageBox demo")
+        createmodFinishedMsg.setDetailedText("The details are as follows:")
+
+        self.browsePath.setDisabled(True)
+        self.browseButton.setDisabled(True)
+        self.createmodButton.setDisabled(True)
         #self.mod_extract(self.browsePath.text(),"E:/Quiver/Quiver-Mod-Setup/resource/createmod.zip")
     def gui_createmod(self):
         self.browsePath.setDisabled(True)
         self.browseButton.setDisabled(True)
         self.createmodButton.setDisabled(True)
+
     def mod_extract(self,baseDir,modDir):
         import zipfile
         import os
